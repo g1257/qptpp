@@ -270,6 +270,7 @@ private:
 					offset++;
 					prev >>= 1;
 				}
+
 				prev >>= 1;
 			}
 
@@ -294,3 +295,4 @@ private:
 } // namespace QuantumPerturbation
 
 #endif // HILBERT_ONE_BAND_EXPAND_HOPPING
+

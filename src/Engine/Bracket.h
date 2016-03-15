@@ -33,7 +33,6 @@ public:
 	typedef typename EquationTermType::StateType StateType;
 	typedef typename EquationTermType::EnergyType EnergyType;
 
-
 	Bracket(const EquationTermType& ket1,const EquationTermType& bra1)
 	    : ket(ket1),
 	      bra(bra1),

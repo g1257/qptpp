@@ -104,7 +104,7 @@ public:
 		std::cerr<<geometry_;
 
 		RealType sum = 0;
-		for (size_t i=0;i<ne_[0];i++)
+		for (SizeType i=0;i<ne_[0];i++)
 			sum += engine_.eigenvalue(i);
 		std::cerr<<"Energy="<<sum<<"\n";
 //		std::cerr<<"E2 (gues) = "<<guessE2()<<"\n";
@@ -163,11 +163,12 @@ private:
 	{
 		SizeType level = 0;
 		RealType sum = 0.0;
-		while(ind > 0) {
+		while (ind > 0) {
 			if (ind & 1) sum += engine_.eigenvalue(level);
 			level++;
 			ind >>= 1;
 		}
+
 		return sum;
 	}
 
@@ -298,3 +299,4 @@ private:
 } // namespace QuantumPerturbation
 
 #endif // HUBBARD_ONE_BAND_EXPAND_U
+

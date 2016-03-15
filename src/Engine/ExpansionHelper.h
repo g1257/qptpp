@@ -197,8 +197,7 @@ private:
 	                                 SizeType ind) const
 	{
 		assert(str[ind] == ',');
-		while(ind < str.length() && str[ind] != ')')
-			ind++;
+		while (ind < str.length() && str[ind] != ')') ind++;
 
 		if (str.length()<ind+5 ||
 		    str[ind+1] != ' ' ||
@@ -308,3 +307,4 @@ private:
 } // namespace QuantumPerturbation
 
 #endif // EXPANSION_HELPER_H
+
