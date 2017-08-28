@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 =pod
-Copyright (c) 2015-2016, UT-Battelle, LLC
+Copyright (c) 2015-2016, 2017, UT-Battelle, LLC
 All rights reserved
 
 [DMRG++, Version 0.]
@@ -50,7 +50,9 @@ sub createMakefile
 	my $fh;
 	open($fh,">Makefile") or die "Cannot open Makefile for writing: $!\n";
 
-	Make::newMake($fh,\@drivers,"qpt++"," "," ","");
+	my %additionals;
+	$additionals{"code"} = "QPT++";
+	Make::newMake($fh,\@drivers,\%additionals);
 	print STDERR "File Makefile has been written\n";
 }
 

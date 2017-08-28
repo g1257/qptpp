@@ -50,16 +50,28 @@ public:
 
 	HilbertOneBandExpandHopping(const GeometryParamsType& geometryParams,
 	                            const PsimagLite::Vector<size_t>::Type& ne)
-	    : geometryParams_(geometryParams),ne_(ne)
+	    : geometryParams_(geometryParams),
+	      ne_(ne),
+	      kets_(geometryParams_.sites + 1, geometryParams_.sites + 1)
 	{
 		SizeType n = geometryParams_.sites;
 
-		kets_.resize(n+1,n+1);
 		for (SizeType i = 1; i <= n; ++i) {
 			for (SizeType j = 0; j <= i; ++j) {
-				VectorSizeType v;
-				findKet(v,i,j);
+				VectorSizeType* v = new VectorSizeType;
+				findKet(*v,i,j);
 				kets_(i,j) = v;
+			}
+		}
+	}
+
+	~HilbertOneBandExpandHopping()
+	{
+		SizeType n = geometryParams_.sites;
+		for (SizeType i = 1; i <= n; ++i) {
+			for (SizeType j = 0; j <= i; ++j) {
+				delete kets_(i,j);
+				kets_(i,j) = 0;
 			}
 		}
 	}
@@ -203,7 +215,7 @@ private:
 	             SizeType coordinate) const
 	{
 		assert(coordinate < kets_(total,npart).size());
-		ket = kets_(total,npart)[coordinate];
+		ket = kets_(total,npart)->operator[](coordinate);
 	}
 
 	void findKet(VectorSizeType& v,
@@ -287,7 +299,7 @@ private:
 
 	const GeometryParamsType& geometryParams_;
 	const PsimagLite::Vector<size_t>::Type& ne_; // n. of up (= n. of  down electrons)
-	PsimagLite::Matrix<VectorSizeType> kets_;
+	PsimagLite::Matrix<VectorSizeType*> kets_;
 	mutable PsimagLite::Vector<VectorVectorSizeType>::Type cachedCoordinates_;
 	mutable PsimagLite::Vector<VectorPairSizeType>::Type cachedKets_;
 };
