@@ -200,10 +200,9 @@ private:
 
 		SizeType ind2 = ind;
 		while (ind2 > 0) {
-			if (ind2 & 1) {
-				sum += std::conj(eigenvector(level1,site))*
-				        eigenvector(level1,site);
-			}
+			if (ind2 & 1)
+				sum += PsimagLite::conj(eigenvector(level1,site))*eigenvector(level1,site);
+
 			level1++;
 			ind2 >>= 1;
 		}
@@ -215,7 +214,7 @@ private:
 	                       const PairSizeType& levels,
 	                       SizeType site) const
 	{
-		RealType sum = std::conj(eigenvector(levels.first,site))*
+		RealType sum = PsimagLite::conj(eigenvector(levels.first,site))*
 		        eigenvector(levels.second,site);
 
 		return sum;

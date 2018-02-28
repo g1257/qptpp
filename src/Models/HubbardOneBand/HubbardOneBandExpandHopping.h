@@ -132,7 +132,7 @@ public:
 			PairSizeType bra = hilbertSpace_.getKet(x,sSetOf(i));
 			for (SizeType y = 0; y < totalj; ++y) {
 				PairSizeType ket = hilbertSpace_.getKet(y,sSetOf(j));
-				sum += std::conj(vx[x]) * vy[y] * value(ket,bra);
+				sum += PsimagLite::conj(vx[x]) * vy[y] * value(ket,bra);
 			}
 		}
 
@@ -245,7 +245,7 @@ private:
 		RealType sum = 0.0;
 		for (SizeType i = 0; i < m.n_row(); ++i)
 			for (SizeType j = 0; j < m.n_row(); ++j)
-				sum += std::conj(m(i,j)) * m(i,j);
+				sum += PsimagLite::conj(m(i,j)) * m(i,j);
 
 		return (sum < 1e-6);
 	}
