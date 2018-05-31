@@ -214,7 +214,7 @@ private:
 	             SizeType npart,
 	             SizeType coordinate) const
 	{
-		assert(coordinate < kets_(total,npart).size());
+		assert(coordinate < kets_(total,npart)->size());
 		ket = kets_(total,npart)->operator[](coordinate);
 	}
 
