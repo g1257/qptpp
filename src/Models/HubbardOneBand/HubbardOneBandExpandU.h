@@ -132,7 +132,9 @@ public:
 		const PairSizeType& jp = iperm_[j];
 		RealType result =  energies_[ip.first] - energies_[jp.first] +
 		        energies_[ip.second] - energies_[jp.second];
-		assert(result != 0);
+		if (result == 0)
+			err("Ground state is degenerate? (not supported yet)\n");
+
 		return result;
 	}
 

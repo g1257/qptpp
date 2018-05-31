@@ -240,9 +240,8 @@ private:
 	{
 		SizeType whatBracketType = findBracketType(bracket.op());
 
-		if (whatBracketType == BRACKET_V) return accVstate(v,bracket);
-
-		accSimpleState(v,bracket);
+		return (whatBracketType == BRACKET_V) ? accVstate(v,bracket) :
+		                                        accSimpleState(v,bracket);
 	}
 
 	void accVstate(VectorRealType& v, const BracketType& bracket) const
