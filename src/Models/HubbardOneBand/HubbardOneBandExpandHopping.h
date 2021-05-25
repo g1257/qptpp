@@ -27,6 +27,7 @@ along with QuantumPerturbation. If not, see <http://www.gnu.org/licenses/>.
 #include "Sort.h"
 #include "BitManip.h"
 #include "HilbertOneBandExpandHopping.h"
+#include "Svd.h"
 
 namespace QuantumPerturbation {
 
@@ -277,6 +278,7 @@ private:
 		} else {
 			MatrixType vt;
 			VectorRealType s;
+			PsimagLite::Svd<RealType_> svd;
 			svd('A',m,s,vt);
 
 			assert(thisSector > 0);

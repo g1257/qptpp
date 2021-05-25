@@ -55,7 +55,10 @@ public:
 	HubbardOneBandExpandU(InputNgType::Readable& io)
 	    : geometryParams_(io),
 	      geometry_(geometryParams_),
-	      engine_(geometry_.matrix(),1,true),
+	      engine_(geometry_.matrix(),
+	              PsimagLite::String("output.txt"),
+	              1,
+	              EngineType::VerboseEnum::YES),
 	      ne_(1,GeometryParamsType::readElectrons(io,geometryParams_.sites)),
 	      gs_(engine_,ne_)
 	{

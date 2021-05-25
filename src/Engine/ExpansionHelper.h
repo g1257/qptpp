@@ -297,7 +297,7 @@ private:
 		return n;
 	}
 
-	ModelType model_;
+	const ModelType& model_;
 	SizeType mode_;
 	VectorRealType energies_;
 	typename PsimagLite::Vector<VectorRealType>::Type a_;
